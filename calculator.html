@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            background-color:#588BB4;
+        }
+        #calbody{
+            height: 600px;
+            width: 500px;
+            background-color: rgba(0, 1, 10, 0.756);
+            position: relative;
+            margin: 5rem 0rem 0rem 35rem;
+            border: 2px solid blue;
+            border-radius: 0.8rem;
+        }
+        #billtotal{
+            background-color: transparent;
+        }
+        #billamount{
+            background-color: transparent;
+            color: aliceblue;
+            font-size: 1.5rem;
+            margin:9rem 0 0.5rem 0;
+        }
+        .bill{
+            background-color: transparent;
+            color: aliceblue;
+            margin: 0.5rem;
+            font-size: 2rem;
+        }
+        #tip{
+            background-color: transparent;
+        }
+        #billtip{
+            background-color: transparent;
+            color: aliceblue;
+            font-size: 2rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+        .tipbill{
+            background-color: transparent;
+            color: aliceblue;
+            font-size: 2rem;
+        }
+        .tipbills{
+            background-color: transparent;
+            color: aliceblue;
+            font-size: 1.5rem;
+        }
+        #total{
+            margin: 1.5rem 1rem;
+            background-color: transparent;
+            color: aliceblue;
+            display: flex;
+            justify-content: space-between;
+            font-size: 2rem;
+        }
+        #person{
+            background-color: transparent;
+            color: antiquewhite;
+        }
+        #totalbill{
+            background-color: transparent;
+            color: aliceblue;
+        }
+        #symbols{
+            background-color: transparent;
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        #plus{
+            height: 3rem;
+            width: 2rem;
+            border-radius: 50%;
+            font-size: 3rem;
+            background-color:transparent;
+            color: rgba(240, 248, 255, 0.591);
+            background-color: hsl(189, 70%, 36%);
+            
+        }
+        #minus{height: 3rem;
+            width: 2rem;
+            font-size: 3rem;
+            position: relative;
+            align-items: end;
+            background-color:transparent;
+            color: rgba(240, 248, 255, 0.591);
+            background-color: hsl(189, 70%, 36%);
+            border-radius: 50%;
+        }
+        #totalbill{
+            background-color: transparent;
+            font-size: 2rem;
+        }
+        #dollar{
+            background-color: transparent;
+            color: aliceblue;
+        }
+        #tbill{
+            background-color: transparent;
+            color: aliceblue;
+            font-size: 2rem;
+        }
+        #tbill{
+            position: relative;
+            margin: 1rem 0 0 1rem;
+                font-size: 2rem;
+        }
+        #personvalue{background-color: transparent;
+            color: aliceblue;
+            display: inline;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="calbody">
+         <div id="billtotal">
+            <h3 id="billamount">Bill Total</h3>
+            <span class="bill">$<input type="text" id="totalbill" onkeyup="calculate()"
+                class="bill"placeholder="0.00"></span>
+            </div>
+            <div id="tip">
+                <h2 id="billtip">Tip</h2>
+                <span class="tipbills ">%<input type="text" id="tippercentage" 
+                    class="tipbill"placeholder="0.00" onkeyup="calculate()"></span>
+            </div>
+                <div id="total">
+                    <div id="person">People
+                        <div id="symbols">
+                            <button id="plus" onclick="calplus()">+</button>
+                             <div id="personvalue">2</div> 
+                            <button id="minus" onclick="calminus()">-</button> 
+                        </div>
+                    </div>
+                    <div id="totalbill">Total Bill Per Person
+                        <div id="tbill"> $0.00 </div>
+                    </div>
+                    
+                </div>
+        </div>
+        <script>
+            const totalbill=document.getElementById('totalbill');
+            const tip=document.getElementById('tippercentage');
+            const plus =document.getElementById('plus');
+             const minus= document.getElementById('minus')
+             const people=document.getElementById('personvalue')
+             const totalamount=document.getElementById('tbill');
+             let peoplediv=parseFloat(people.innerText)
+             const  calculate=()=>{
+                var tbill=parseFloat(totalbill.value)
+                var tipp=parseFloat(tip.value)/100
+                var totaltip= tbill*tipp
+                console.log({totaltip})
+                var total=totaltip+tbill
+                console.log({peoplediv})
+                console.log({total})
+                const perhead=total/peoplediv;
+                console.log({perhead})
+                totalamount.innerText=`$${perhead.toFixed(2)}`
+
+             }
+
+             calplus=()=>{
+                peoplediv+=1
+                people.innerText=peoplediv
+                calculate();
+             }
+             calminus=()=>{
+                if(peoplediv<=1)
+                {
+                    return
+                }
+                else{
+                    peoplediv-=1
+                }
+                people.innerText=peoplediv
+             
+             calculate()
+             }
+        </script>
+</body>
+</html>
